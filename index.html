@@ -182,6 +182,103 @@
             </div>
         </div>
     </div>
+    <div class="center">
+        <!-- Save Changes Button, hidden initially -->
+        <button id="saveChangesBtn" class="form-btn" style="display:none;">Save Changes</button>
+    </div>
+
+    <!-- Form Section to Update Profile -->
+    <div class="form-section">
+        <h2 class="heading heading_dark text-center">Make Your Resume</h2>
+        <form id="profileForm">
+                <!-- Profile Picture Upload -->
+                <div class="form-group">
+                    <label for="profilePic">Upload Profile Picture:</label>
+                    <input type="file" id="profilePic" accept="image/*" required>
+                </div>
+
+                <!-- Name -->
+                <div class="form-group">
+                    <label for="inputName">Name:</label>
+                    <input type="text" id="inputName" placeholder="Enter your Name" required>
+                </div>
+
+                <!-- Position -->
+                <div class="form-group">
+                    <label for="inputPosition">Position:</label>
+                    <input type="text" id="inputPosition" placeholder="Enter your Position" required>
+                </div>
+                
+                <!-- Profile Text Input -->
+                <div class="form-group">
+                    <label for="profileText">Profile Text:</label>
+                    <textarea id="profileText" placeholder="Enter profile description" required></textarea>
+                </div>
+        
+                <!-- Phone Number Input -->
+                <div class="form-group">
+                    <label for="inputPhone">Phone:</label>
+                    <input type="tel" id="inputPhone" placeholder="Enter your phone number" required pattern="[+][0-9]{1,3} [0-9]{7,15}" title="e.g., +92 300 8976773">
+                </div>
+        
+                <!-- Email Input -->
+                <div class="form-group">
+                    <label for="inputEmail">Email:</label>
+                    <input type="email" id="inputEmail" placeholder="Enter your email" required>
+                </div>
+        
+                <!-- Website Input -->
+                <div class="form-group">
+                    <label for="inputWebsite">Website:</label>
+                    <input type="text" id="inputWebsite" placeholder="Enter your website" required>
+                </div>
+        
+                <!-- Home Address Input -->
+                <div class="form-group">
+                    <label for="inputHome">Home Address:</label>
+                    <input type="text" id="inputHome" placeholder="Enter your home address" required>
+                </div>
+        
+                <!-- Languages Input -->
+                <div class="form-group">
+                    <label for="inputLanguages">Languages (Comma Separated):</label>
+                    <input type="text" id="inputLanguages" placeholder="Enter languages" required>
+                </div>
+        
+                <!-- Save Button -->
+                <button type="submit" class="form-btn">Save Changes</button>
+        </form>
+    </div>
+
+    <!-- Form Section to Update Experience -->
+    <div class="form-section">
+        <h2 class="heading heading_dark">Update Experience</h2>
+        <form id="experienceForm">
+            <!-- Company Name -->
+            <div class="form-group">
+                <label for="inputCompanyName">Company Name:</label>
+                <input type="text" id="inputCompanyName" placeholder="Enter company name" required>
+            </div>
+
+            <!-- Job Description -->
+            <div class="form-group">
+                <label for="inputJobDescription">Job Description:</label>
+                <textarea id="inputJobDescription" placeholder="Enter job description" required></textarea>
+            </div>
+
+            <!-- Form Submit Button -->
+            <button type="submit" class="form-btn">Update Experience</button>
+        </form>
+    </div>
+
+
+    <!-- Custom Alert -->
+    <div id="customAlert" class="custom-alert hidden">
+        <div class="custom-alert-content">
+            <span id="customAlertMessage"></span>
+        </div>
+    </div>
+    
     <script src="js/main.js"></script>
 </body>
 

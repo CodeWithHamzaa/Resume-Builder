@@ -787,6 +787,10 @@ form {
     display: none !important;;
 }
 
+.pdf-mode .skill-button {
+    display: none !important;
+}
+
 
 /* Container for the form sections */
 .form-container {

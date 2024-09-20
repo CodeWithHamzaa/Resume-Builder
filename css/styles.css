@@ -1,3 +1,5 @@
+
+
 html {
     box-sizing: border-box;
 }
@@ -10,14 +12,6 @@ html {
 
 p {
     font-family: Tahoma, Verdana, sans-serif;
-}
-
-h1 {
-    font-family: 'Monaco', 'Helvetica Neue', Helvetica, sans-serif;
-}
-
-h2 {
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .container {
@@ -60,6 +54,9 @@ h2 {
     padding-bottom: 16px;
     text-transform: uppercase;
     font-weight: 700;
+    font-size: 20px !important;
+    font-family: monospace;
+    letter-spacing: 3px !important;
 }
 
 .heading-light {
@@ -92,12 +89,8 @@ h2 {
     border-bottom: 2px #5a5a5a dashed;
 }
 
-address {
+.address {
     font-style: normal;
-}
-
-.fas {
-    margin-right: 7px;
 }
 
 .languages {
@@ -136,26 +129,6 @@ address {
     font-weight: 600;
 }
 
-.lines {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.line {
-    display: block;
-    width: 90px;
-    height: 2px;
-    background-color: #5c5c5c;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-.line:nth-child(2) {
-    width: 100px;
-    margin-left: 20px;
-}
-
 .resume {
     padding: 25px 30px;
     flex-basis: 63%;
@@ -179,16 +152,18 @@ address {
     font-size: 20px;
     text-transform: uppercase;
     letter-spacing: 10.75px;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
+    font-family: "Mitr", sans-serif;
+    font-weight: 500;
 }
 
 .position {
     display: inline-block;
-    font-size: 13px;
+    font-size: 14px;
     text-transform: uppercase;
     color: #808080;
-    margin-bottom: 28px;
-    font-family: cursive;
+    margin-bottom: 10px;
+    font-family: "Raleway", sans-serif;
     font-weight: 600;
 }
 
@@ -212,6 +187,7 @@ address {
     font-weight: 700;
     border-bottom: 1px solid #e0e0e0;
     margin-bottom: 37px;
+    letter-spacing: 3px;
 }
 
 .list {
@@ -277,8 +253,9 @@ address {
 }
 .skill-button {
     display: inline-block;
-    padding: 5px 15px;
+    padding: 5px 12px;
     font-size: 14px;
+    font-weight: 900;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
@@ -286,14 +263,15 @@ address {
     color: #fff;
     background-color: #68b1ff;
     border: none;
-    border-radius: 15px;
+    border-radius: 8px;
     box-shadow: 0 5px #999;
+    float: right;
 }
 
 .skill-button:hover {background-color: #a7c3e1}
 
 .skill-button:active {
-    background-color: #46af58;
+    background-color: #04AA6D;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
 }
@@ -305,7 +283,6 @@ address {
 
 .skills-list__item {
     margin-bottom: 30px;
-    text-transform: uppercase;
     font-size: 14px;
     display: flex;
     justify-content: space-between;
@@ -329,7 +306,12 @@ address {
     height: 100%;
     background-color: #68b1ff;
 }
-
+.level-10:before {
+    width: 10%;
+}
+.level-20:before {
+    width: 20%;
+}
 .level-30:before {
     width: 30%;
 }
@@ -395,9 +377,6 @@ address {
         z-index: 0;
     }
 
-    .lines {
-        display: none;
-    }
 }
 
 @media (max-width: 768px) {
@@ -428,28 +407,13 @@ address {
     }
 
     .about-contacts__link {
-        display: block;
+        /* display: flex; */
         font-size: 13px;
     }
 }
 
-@media (max-width: 567px) {
-    .logo-img {
-        width: 70px;
-        height: 70px;
-    }
-
-    .logo-lines {
-        margin-left: 8px;
-        margin-right: 8px;
-    }
-}
 
 @media (max-width: 480px) {
-    .logo {
-        display: none;
-    }
-
     .container {
         min-width: 320px;
     }
@@ -518,16 +482,32 @@ form {
 .form-btn {
     background-color: #68b1ff;
     color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 15px;
+    border: 2px solid;
+    border-radius: 6px;
+    padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
+    transition: 0.4s;
+    font-weight: 600;
+    letter-spacing: 4px;
+}
+
+#saveChangesBtn {
+    background-color: #04AA6D;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 7px;
+    font-size: 14px;
+    cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
+    float: right;
 }
 
 .form-btn:hover {
-    background-color: #a7c3e1;
+    background-color: transparent;
+    border: 2px solid #68B1FF;
+    color: #333;
 }
 
 .form-btn:active {
@@ -547,35 +527,6 @@ form {
     }
 
     .form-btn {
-        padding: 12px;
-        font-size: 14px;
-    }
-}
-
-.save-btn {
-    background-color: #68b1ff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 15px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-}
-
-.save-btn:hover {
-    background-color: #a7c3e1;
-}
-
-.save-btn:active {
-    background-color: #46af58;
-    transform: scale(0.98);
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-
-    .save-btn {
         padding: 12px;
         font-size: 14px;
     }
@@ -610,39 +561,70 @@ form {
     }
 }
 
-/* Custom Alert Styles */
+/* Base styles for the custom alert */
 .custom-alert {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #4CAF50; /* Green background */
-    color: #fff; /* White text */
-    padding: 10px 20px;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4CAF50; /* Default Green background */
+    color: #fff;
+    padding: 20px 20px;
     border-radius: 5px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
     z-index: 1000;
+    font-family: monospace;
+    font-size: 16px;
 }
 
+/* Hidden state */
 .custom-alert.hidden {
     display: none;
 }
 
+/* Show state */
+.custom-alert.show {
+    display: block;
+    opacity: 1;
+}
+
+/* Alert content layout */
 .custom-alert-content {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
+/* Space between text and icon */
 .custom-alert-content span {
     margin-right: 10px;
 }
 
-.custom-alert.show {
-    display: block;
-    opacity: 1;
+/* Specific styles for success alerts */
+.custom-alert.success {
+    background-color: #4CAF50; /* Green background */
 }
+
+/* Specific styles for error alerts */
+.custom-alert.error {
+    background-color: #f44336; /* Red background */
+}
+
+/* Specific styles for info alerts */
+.custom-alert.info {
+    background-color: #2196F3; /* Blue background */
+}
+
+/* For small screens (e.g., mobile devices) */
+@media (max-width: 600px) {
+    .custom-alert {
+        padding: 10px 20px; /* Adjust padding */
+        font-size: 12px; /* Adjust font size */
+    }
+}
+
 
 .center {
     display: flex;
@@ -655,17 +637,257 @@ form {
     text-align: center;
 }
 
-.experience .list-item .delete-btn {
+.delete-btn {
     position: absolute;
     right: 10px;
+    bottom: 10px;
     background-color: #e57373;
     color: white;
     border: none;
     border-radius: 4px;
     padding: 5px 10px;
     cursor: pointer;
+
 }
 
-.experience .list-item .delete-btn:hover {
+.delete-btn:hover {
     background-color: #c62828;
 }
+
+#resume {
+    width: 100%;
+    padding: 20px;
+    background-color: white;
+}
+
+.pdf-mode .profile-info {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+
+.pdf-mode .heading {
+    padding-bottom: 10px;
+    font-size: 14px !important;
+    letter-spacing: 3px;
+}
+
+.pdf-mode .profile-text {
+    font-size: 12px;
+    line-height: 20px;
+    margin-bottom: 0px;
+}
+
+.pdf-mode .contacts-item {
+    padding-top: 10px;
+    padding-bottom: 15px;
+}
+
+.pdf-mode .contacts-title {
+    margin-bottom: 12px;
+    font-size: 14px;
+    letter-spacing: 3px;
+} 
+
+.pdf-mode .contacts-text {
+    padding-left: 0px;
+    line-height: 20px;
+    font-size: 12px;
+}
+
+.pdf-mode .contacts {
+    margin-bottom: 32px;
+}
+
+.pdf-mode .languages {
+    padding-top: 20px;
+}
+
+.pdf-mode .language {
+    margin-bottom: 15px;
+}
+
+.pdf-mode .language-text {
+    font-size: 10px;
+}
+
+.pdf-mode .profile-photo {
+    padding: 28px 28px 5px 28px;
+}
+
+.pdf-mode .resume {
+    padding: 0px 30px;
+}
+
+.pdf-mode .resume-wrap {
+    padding: 15px 56px;
+}
+
+.pdf-mode .about {
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+    border-bottom: 0px;
+}
+
+.pdf-mode .name {
+    font-size: 16px;
+    letter-spacing: 8px;
+    margin-bottom: 5px;
+}
+
+.pdf-mode .position {
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.pdf-mode .heading_dark {
+    margin-bottom: 16px;
+}
+
+.pdf-mode .list-item {
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.pdf-mode .list-item__title {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.pdf-mode .list-item__text {
+    font-size: 12px;
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+
+.pdf-mode .education {
+    margin-top: 30px;
+}
+
+.pdf-mode .skills {
+    margin-top: 30px;
+}
+
+.pdf-mode .skills-list {
+    margin-top: 30px;
+}
+
+.pdf-mode .skills-list__item {
+    margin-bottom: 25px;
+    font-size: 12px;
+    font-family: Tahoma, Verdana, sans-serif;
+    letter-spacing: 3px;
+}
+
+.pdf-mode .delete-btn {
+    display: none !important;;
+}
+
+.pdf-mode .edit-btn {
+    display: none !important;;
+}
+
+
+/* Container for the form sections */
+.form-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Space between form sections */
+    margin: 0 auto;
+    max-width: 1200px; /* Centering and max width */
+    padding: 20px;
+}
+
+
+/* Container for all forms */
+.form-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Space between forms */
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* Each form section */
+.form-container .form-section {
+    flex: 1 1 calc(50% - 20px); /* Two forms per row with space */
+    box-sizing: border-box;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading styling */
+.form-container .heading {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+/* Form styling */
+.form-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Form group styling */
+.form-container #profileForm .form-group {
+    margin-bottom: 27px; 
+}
+
+/* Form group styling */
+.form-container .form-group {
+    margin-bottom: 15px; 
+}
+
+/* Label styling */
+.form-container label {
+    display: block;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+/* Input and textarea styling */
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="number"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 0.9rem;
+}
+
+/* File input styling */
+input[type="file"] {
+    padding: 12px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .form-container {
+        flex-direction: column; /* Stack forms vertically on small screens */
+        gap: 10px; /* Reduce space between forms */
+    }
+
+    .form-container .form-section {
+        flex: 1 1 100%; /* Full width for each form on small screens */
+    }
+
+    .form-container #profileForm .form-group {
+        margin-bottom: 15px; 
+    }
+}
+
+
+

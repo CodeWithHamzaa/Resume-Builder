@@ -1,10 +1,13 @@
-// Function to show the custom alert
-function showCustomAlert(message, duration) {
+// Function to show the custom alert with different types
+function showCustomAlert(message, type, duration) {
+    if (type === void 0) { type = 'info'; }
     if (duration === void 0) { duration = 3000; }
     var alertElement = document.getElementById('customAlert');
     var messageElement = document.getElementById('customAlertMessage');
     if (alertElement && messageElement) {
+        // Set the message and alert type
         messageElement.textContent = message;
+        alertElement.className = "custom-alert ".concat(type); // Add alert type class
         alertElement.classList.remove('hidden');
         alertElement.classList.add('show');
         // Hide the alert after the specified duration
@@ -60,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Show the "Edit Profile" button after form submission
         editProfileBtn.style.display = 'inline-block';
         // Show a success message
-        showCustomAlert('Profile updated successfully!');
+        showCustomAlert('Profile updated successfully!', 'success');
         // Hide the "Save Changes" button
         saveChangesBtn.style.display = 'none';
     });
@@ -76,7 +79,9 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('name').setAttribute('contenteditable', 'true');
         document.getElementById('position').setAttribute('contenteditable', 'true');
         // Show a popup message
-        showCustomAlert('You can now edit your profile!');
+        showCustomAlert('You can now edit your profile!', 'info');
+        // Remove "Edit Profile" button once clicked
+        editProfileBtn.style.display = 'none';
         // Show the "Save Changes" button
         saveChangesBtn.style.display = 'inline-block';
     });
@@ -92,7 +97,9 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('name').setAttribute('contenteditable', 'false');
         document.getElementById('position').setAttribute('contenteditable', 'false');
         // Show a success message
-        showCustomAlert('Profile changes saved successfully!');
+        showCustomAlert('Profile changes saved successfully!', 'success');
+        // Show the "Edit Profile" button after form submission
+        editProfileBtn.style.display = 'inline-block';
         // Hide the "Save Changes" button
         saveChangesBtn.style.display = 'none';
     });
@@ -104,6 +111,10 @@ document.addEventListener('DOMContentLoaded', function () {
         toggleSkillsBtn.addEventListener("click", function () {
             skillsVisible = !skillsVisible;
             skillsList.style.display = skillsVisible ? "block" : "none";
+            // Change the button style based on visibility
+            toggleSkillsBtn.textContent = skillsVisible ? "x" : "+";
+            // Change the button background color based on visibility
+            toggleSkillsBtn.style.backgroundColor = skillsVisible ? "#ff7675" : "#74b9ff";
         });
     }
     ;
@@ -125,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Clear form fields after submission
         experienceForm.reset();
         // Show success alert (if you have an alert function)
-        showCustomAlert('Experience added successfully!');
+        showCustomAlert('Experience added successfully!', 'success');
     });
     // Function to update the experience list in the DOM
     function updateExperienceList() {
@@ -154,7 +165,93 @@ document.addEventListener('DOMContentLoaded', function () {
             // Update the experience list
             updateExperienceList();
             // Show success alert (if you have an alert function)
-            showCustomAlert('Experience deleted successfully!');
+            showCustomAlert('Experience deleted successfully!', 'error');
         }
+    });
+    // Get references to the education form
+    var educationForm = document.getElementById('educationForm');
+    var educationList = document.getElementById('education-list');
+    // Array to hold multiple experiences
+    var educations = [];
+    // Handle Experience Form Submission
+    educationForm.addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent form reload on submit
+        // Get values from the form inputs
+        var degreeName = document.getElementById('inputDegree').value;
+        var collegeName = document.getElementById('inputCollege').value;
+        // Add new experience to the array
+        educations.push({ degreeName: degreeName, collegeName: collegeName });
+        // Update the experience list in the DOM
+        updateEducationList();
+        // Clear form fields after submission
+        educationForm.reset();
+        // Show success alert
+        showCustomAlert('Education added successfully!', 'success');
+    });
+    // Function to update the experience list in the DOM
+    function updateEducationList() {
+        if (educationList) {
+            // Clear previous entries
+            educationList.innerHTML = '';
+            // Generate list item for each experience
+            educations.forEach(function (education, index) {
+                var educationItem = document.createElement('li');
+                educationItem.className = 'list-item';
+                // Add content and delete button to the list item
+                educationItem.innerHTML = "\n                    <h4 class=\"list-item__title\">".concat(education.collegeName, "</h4>\n                    <p class=\"list-item__date\">").concat(education.degreeName, "</p>\n                    <button class=\"delete-btn\" data-index=\"").concat(index, "\">Delete</button>\n                ");
+                // Append the new education item to the list
+                educationList.appendChild(educationItem);
+            });
+        }
+    }
+    // Delegate event handling for dynamically added delete buttons
+    educationList.addEventListener('click', function (event) {
+        var target = event.target;
+        if (target && target.classList.contains('delete-btn')) {
+            // Get the index of the education to delete
+            var index = parseInt(target.getAttribute('data-index') || '0', 10);
+            // Remove education from the array
+            educations.splice(index, 1);
+            // Update the education list
+            updateEducationList();
+            // Show success alert
+            showCustomAlert('Education Deleted successfully!', 'error');
+        }
+    });
+    // Get references to necessary DOM elements
+    var skillForm = document.getElementById('skillForm');
+    var skillList = document.getElementById('skills-list');
+    // Track whether the static entries have been removed
+    var staticEntriesRemoved = false;
+    // Handle Skill Form Submission
+    skillForm.addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent form reload on submit
+        // Get values from the form inputs
+        var skillInput = document.getElementById('skillInput');
+        var levelInput = document.getElementById('levelInput');
+        var skillName = skillInput.value.trim();
+        var skillLevel = parseInt(levelInput.value);
+        // Validate inputs
+        if (skillName === '' || isNaN(skillLevel) || skillLevel < 10 || skillLevel > 100 || skillLevel % 10 !== 0) {
+            alert('Please enter a valid skill name and level (in increments of 10 from 10 to 100).');
+            return;
+        }
+        // Remove static entries on the first submission only
+        if (!staticEntriesRemoved) {
+            skillList.innerHTML = ''; // Clear the static entries
+            staticEntriesRemoved = true; // Mark static entries as removed
+        }
+        // Create a new list item for the skill
+        var newSkillItem = document.createElement('li');
+        newSkillItem.className = 'skills-list__item';
+        // Skill name and dynamic skill level (based on input)
+        newSkillItem.innerHTML = "\n            ".concat(skillName, "\n            <div class=\"level level-").concat(skillLevel, "\"></div>\n        ");
+        // Append the new skill to the list
+        skillList.appendChild(newSkillItem);
+        // Show success alert
+        showCustomAlert('Skills Added successfully!', 'success');
+        // Clear the form inputs
+        skillInput.value = '';
+        levelInput.value = '';
     });
 });

@@ -1,10 +1,13 @@
-// Function to show the custom alert
-function showCustomAlert(message: string, duration: number = 3000): void {
+// Function to show the custom alert with different types
+function showCustomAlert(message: string, type: string = 'info', duration: number = 3000): void {
     const alertElement = document.getElementById('customAlert');
     const messageElement = document.getElementById('customAlertMessage');
 
     if (alertElement && messageElement) {
+        // Set the message and alert type
         messageElement.textContent = message;
+        alertElement.className = `custom-alert ${type}`; // Add alert type class
+
         alertElement.classList.remove('hidden');
         alertElement.classList.add('show');
 
@@ -25,8 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const editProfileBtn = document.getElementById('editProfileBtn') as HTMLButtonElement;
     const saveChangesBtn = document.getElementById('saveChangesBtn') as HTMLButtonElement;
     
-    
-
     // Handle Profile Form Submission
     profileForm.addEventListener('submit', (event) => {
         event.preventDefault(); // Prevent form reload on submit
@@ -72,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
         editProfileBtn.style.display = 'inline-block';
 
         // Show a success message
-        showCustomAlert('Profile updated successfully!');
+        showCustomAlert('Profile updated successfully!', 'success');
 
         // Hide the "Save Changes" button
         saveChangesBtn.style.display = 'none';
@@ -91,7 +92,10 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('position')!.setAttribute('contenteditable', 'true');
 
         // Show a popup message
-        showCustomAlert('You can now edit your profile!');
+        showCustomAlert('You can now edit your profile!', 'info');
+
+        // Remove "Edit Profile" button once clicked
+        editProfileBtn.style.display = 'none';
 
         // Show the "Save Changes" button
         saveChangesBtn.style.display = 'inline-block';
@@ -110,7 +114,10 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('position')!.setAttribute('contenteditable', 'false');
 
         // Show a success message
-        showCustomAlert('Profile changes saved successfully!');
+        showCustomAlert('Profile changes saved successfully!', 'success');
+
+        // Show the "Edit Profile" button after form submission
+        editProfileBtn.style.display = 'inline-block';
 
         // Hide the "Save Changes" button
         saveChangesBtn.style.display = 'none';
@@ -125,8 +132,15 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleSkillsBtn.addEventListener("click", () => {
             skillsVisible = !skillsVisible;
             skillsList.style.display = skillsVisible ? "block" : "none";
+
+            // Change the button style based on visibility
+            toggleSkillsBtn.textContent = skillsVisible ? "x" : "+";
+
+            // Change the button background color based on visibility
+            toggleSkillsBtn.style.backgroundColor = skillsVisible ? "#ff7675" : "#74b9ff";
         });
     };
+
 
     // Get references to the experience form
     const experienceForm = document.getElementById('experienceForm') as HTMLFormElement;
@@ -153,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
         experienceForm.reset();
 
         // Show success alert (if you have an alert function)
-        showCustomAlert('Experience added successfully!');
+        showCustomAlert('Experience added successfully!', 'success');
     });
 
     // Function to update the experience list in the DOM
@@ -179,7 +193,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
         
-
     // Delegate event handling for dynamically added delete buttons
     experienceList.addEventListener('click', (event) => {
         const target = event.target as HTMLElement;
@@ -195,7 +208,130 @@ document.addEventListener('DOMContentLoaded', () => {
             updateExperienceList();
 
             // Show success alert (if you have an alert function)
-            showCustomAlert('Experience deleted successfully!');
+            showCustomAlert('Experience deleted successfully!', 'error');
         }
+    });
+
+
+    // Get references to the education form
+    const educationForm = document.getElementById('educationForm') as HTMLFormElement;
+    const educationList = document.getElementById('education-list') as HTMLUListElement;
+
+    // Array to hold multiple experiences
+    const educations: Array<{ degreeName: string, collegeName: string }> = [];
+
+    // Handle Experience Form Submission
+    educationForm.addEventListener('submit', (event) => {
+        event.preventDefault(); // Prevent form reload on submit
+
+        // Get values from the form inputs
+        const degreeName = (document.getElementById('inputDegree') as HTMLInputElement).value;
+        const collegeName = (document.getElementById('inputCollege') as HTMLTextAreaElement).value;
+
+        // Add new experience to the array
+        educations.push({ degreeName, collegeName });
+
+        // Update the experience list in the DOM
+        updateEducationList();
+
+        // Clear form fields after submission
+        educationForm.reset();
+
+        // Show success alert
+        showCustomAlert('Education added successfully!', 'success');
+    });
+
+    // Function to update the experience list in the DOM
+    function updateEducationList() {
+        if (educationList) {
+            // Clear previous entries
+            educationList.innerHTML = '';
+
+            // Generate list item for each experience
+            educations.forEach((education, index) => {
+                const educationItem = document.createElement('li');
+                educationItem.className = 'list-item';
+
+                 // Add content and delete button to the list item
+                educationItem.innerHTML = `
+                    <h4 class="list-item__title">${education.collegeName}</h4>
+                    <p class="list-item__date">${education.degreeName}</p>
+                    <button class="delete-btn" data-index="${index}">Delete</button>
+                `;
+                // Append the new education item to the list
+                educationList.appendChild(educationItem);
+            });
+        }
+    }
+
+    // Delegate event handling for dynamically added delete buttons
+    educationList.addEventListener('click', (event) => {
+        const target = event.target as HTMLElement;
+
+        if (target && target.classList.contains('delete-btn')) {
+            // Get the index of the education to delete
+            const index = parseInt(target.getAttribute('data-index') || '0', 10);
+
+            // Remove education from the array
+            educations.splice(index, 1);
+
+            // Update the education list
+            updateEducationList();
+
+            // Show success alert
+            showCustomAlert('Education Deleted successfully!', 'error');
+        }
+    });
+
+
+    // Get references to necessary DOM elements
+    const skillForm = document.getElementById('skillForm') as HTMLFormElement;
+    const skillList = document.getElementById('skills-list') as HTMLUListElement;
+
+    // Track whether the static entries have been removed
+    let staticEntriesRemoved = false;
+
+    // Handle Skill Form Submission
+    skillForm.addEventListener('submit', (event) => {
+        event.preventDefault(); // Prevent form reload on submit
+
+        // Get values from the form inputs
+        const skillInput = document.getElementById('skillInput') as HTMLInputElement;
+        const levelInput = document.getElementById('levelInput') as HTMLInputElement;
+
+        const skillName = skillInput.value.trim();
+        const skillLevel = parseInt(levelInput.value);
+
+        // Validate inputs
+        if (skillName === '' || isNaN(skillLevel) || skillLevel < 10 || skillLevel > 100 || skillLevel % 10 !== 0) {
+            alert('Please enter a valid skill name and level (in increments of 10 from 10 to 100).');
+            return;
+        }
+
+        // Remove static entries on the first submission only
+        if (!staticEntriesRemoved) {
+            skillList.innerHTML = ''; // Clear the static entries
+            staticEntriesRemoved = true; // Mark static entries as removed
+        }
+
+        // Create a new list item for the skill
+        const newSkillItem = document.createElement('li');
+        newSkillItem.className = 'skills-list__item';
+
+        // Skill name and dynamic skill level (based on input)
+        newSkillItem.innerHTML = `
+            ${skillName}
+            <div class="level level-${skillLevel}"></div>
+        `;
+
+        // Append the new skill to the list
+        skillList.appendChild(newSkillItem);
+
+        // Show success alert
+        showCustomAlert('Skills Added successfully!', 'success');
+
+        // Clear the form inputs
+        skillInput.value = '';
+        levelInput.value = '';
     });
 });

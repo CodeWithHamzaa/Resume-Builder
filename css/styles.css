@@ -16,7 +16,7 @@ p {
     display: flex;
     max-width: 960px;
     background-color: #eaeaea;
-    justify-content: space-between;
+    justify-content: center;
     margin: 20px auto;
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1)
 }
@@ -132,11 +132,7 @@ p {
 .resume {
     padding: 0px 10px;
     background-color: #fff;
-<<<<<<< HEAD
     min-width: 63%;
-=======
-    min-width: 655px;
->>>>>>> 89de645e6654b87a1f69e1d8bdddc1b1e1b8510d
 }
 
 .resume-wrap {
@@ -260,7 +256,6 @@ p {
     display: block; 
 }
 
-
 .skill-button {
     display: inline-block;
     padding: 5px 12px;
@@ -276,6 +271,7 @@ p {
     border-radius: 8px;
     box-shadow: 0 5px #999;
     transition: background-color 0.3s ease, transform 0.2s ease;
+    float: right;
 }
 
 .skill-button:hover {transform: scale(1.1)}
@@ -494,6 +490,12 @@ p {
     }
     .list-item__date {
         font-size: 8px;
+    }
+    .delete-btn {
+        right: 0px !important;
+        bottom: 3px !important;
+        padding: 2px 5px !important;
+        font-size: 8px !important;
     }
     .skill-button{
         padding: 3px 8px;

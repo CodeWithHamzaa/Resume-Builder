@@ -188,7 +188,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Show success alert
         showCustomAlert('Education added successfully!', 'success');
     });
-    // Function to update the experience list in the DOM
+    // Function to update the education list in the DOM
     function updateEducationList() {
         if (educationList) {
             // Clear previous entries
@@ -198,7 +198,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 var educationItem = document.createElement('li');
                 educationItem.className = 'list-item';
                 // Add content and delete button to the list item
-                educationItem.innerHTML = "\n                    <h4 class=\"list-item__title\">".concat(education.collegeName, "</h4>\n                    <p class=\"list-item__date\">").concat(education.degreeName, "</p>\n                    <button class=\"delete-btn\" data-index=\"").concat(index, "\">Delete</button>\n                ");
+                educationItem.innerHTML = "\n                    <h4 class=\"list-item__title\">".concat(education.collegeName, "</h4>\n                    <p class=\"list-item__date\"><i style=\"text-transform: capitalize;\">From:</i> ").concat(education.degreeName, "</p>\n                    <button class=\"delete-btn\" data-index=\"").concat(index, "\">Delete</button>\n                ");
                 // Append the new education item to the list
                 educationList.appendChild(educationItem);
             });

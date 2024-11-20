@@ -241,7 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
         showCustomAlert('Education added successfully!', 'success');
     });
 
-    // Function to update the experience list in the DOM
+    // Function to update the education list in the DOM
     function updateEducationList() {
         if (educationList) {
             // Clear previous entries
@@ -255,7 +255,7 @@ document.addEventListener('DOMContentLoaded', () => {
                  // Add content and delete button to the list item
                 educationItem.innerHTML = `
                     <h4 class="list-item__title">${education.collegeName}</h4>
-                    <p class="list-item__date">${education.degreeName}</p>
+                    <p class="list-item__date"><i style="text-transform: capitalize;">From:</i> ${education.degreeName}</p>
                     <button class="delete-btn" data-index="${index}">Delete</button>
                 `;
                 // Append the new education item to the list

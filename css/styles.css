@@ -132,6 +132,7 @@ p {
 .resume {
     padding: 0px 10px;
     background-color: #fff;
+    min-width: 655px;
 }
 
 .resume-wrap {

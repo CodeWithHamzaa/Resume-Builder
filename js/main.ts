@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Toggle the skills section visibility
     const toggleSkillsBtn = document.getElementById("toggleSkillsBtn") as HTMLButtonElement;
     const skillsList = document.getElementById("skills-list") as HTMLElement;
-    let skillsVisible = false;
+    let skillsVisible = true;
 
     if (toggleSkillsBtn && skillsList) {
         toggleSkillsBtn.addEventListener("click", () => {

@@ -132,7 +132,11 @@ p {
 .resume {
     padding: 0px 10px;
     background-color: #fff;
+<<<<<<< HEAD
     min-width: 63%;
+=======
+    min-width: 655px;
+>>>>>>> 89de645e6654b87a1f69e1d8bdddc1b1e1b8510d
 }
 
 .resume-wrap {

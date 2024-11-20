@@ -132,6 +132,7 @@ p {
 .resume {
     padding: 0px 10px;
     background-color: #fff;
+    min-width: 63%;
 }
 
 .resume-wrap {
@@ -270,7 +271,6 @@ p {
     border: none;
     border-radius: 8px;
     box-shadow: 0 5px #999;
-    float: right;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
@@ -423,7 +423,6 @@ p {
     .profile-photo {
         width: 100%;
         height: 195px;
-
     }
     .profile-text {
         font-size: 12px;
@@ -439,10 +438,15 @@ p {
     .profile-info {
         padding-left: 10px;
         padding-right: 10px;
-        padding-top: 30px;
-        padding-bottom: 30px;
+        padding-top: 10px;
+        padding-bottom: 10px;
     }
     
+    .profile-photo {
+        width: 100%;
+        height: 150px;
+        padding: 10px;
+    }
     .profile-text {
         font-size: 10px;
     }
@@ -482,7 +486,10 @@ p {
         margin-bottom: 15px;
     }
     .skills-list__item {
-        font-size: 12px;
+        font-size: 8px;
+    }
+    .list-item__date {
+        font-size: 8px;
     }
     .skill-button{
         padding: 3px 8px;
@@ -502,13 +509,32 @@ p {
         margin-bottom: 20px;
     }
 
-
 }
 
 @media (max-width: 425px) {
-    
+    .profile-photo {
+        width: 100%;
+        height: 135px;
+        padding: 5px;
+    }
+    .heading {
+        font-size: 10px !important;
+    }
+    .profile-text {
+        font-size: 8px;
+    }
     .contacts-text {
-        font-size: 9px;
+        font-size: 8px;
+    }
+    .contacts-title {
+        font-size: 10px;
+    }
+    .list-item__title {
+        font-size: 10px;
+    }
+    .list-item__text {
+        font-size: 8px;
+        line-height: 1.4;
     }
     .language {
         width: 50px;
@@ -516,6 +542,17 @@ p {
         margin-right: 4px;
         border: 2px solid #68B1FF;
     }
+    .form-btn {
+        font-size: 10px !important;
+        letter-spacing: 3px;
+    }
+    .position {
+        font-size: 12px;
+    }
+    .name {
+        font-size: 16px;
+    }
+    
 }
 
 

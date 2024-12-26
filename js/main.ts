@@ -19,15 +19,58 @@ function showCustomAlert(message: string, type: string = 'info', duration: numbe
     }
 }
 
+// Mobile Navbar Toggle Menu
+function toggleMenu(): void {
+    const dropdownMenu = document.querySelector('.dropdown-menu');
+    if (dropdownMenu) {
+        dropdownMenu.classList.toggle('active'); // Toggles the active class
+    } else {
+        console.error("Dropdown menu element not found.");
+    }
+}
+
 
 document.addEventListener('DOMContentLoaded', () => {
 
     // Get references to necessary DOM elements
+    const resumeSection = document.getElementById('resume-section') as HTMLElement;
     const profileForm = document.getElementById('profileForm') as HTMLFormElement;
     const profilePhotoElement = document.getElementById('profile-photo') as HTMLImageElement;
     const editProfileBtn = document.getElementById('editProfileBtn') as HTMLButtonElement;
     const saveChangesBtn = document.getElementById('saveChangesBtn') as HTMLButtonElement;
+    const buildCvBtn = document.getElementById('buildBtn') as HTMLButtonElement;
+    const startCvBtn = document.getElementById('startBtn') as HTMLButtonElement;
+    const headingSection = document.getElementById('heading-sec') as HTMLElement;
+    const formSection = document.getElementById('form-sec') as HTMLElement;
+    const downloadBtn = document.getElementById('downloadPdfBtn') as HTMLButtonElement;
+    const profileFormSection = document.getElementById('profileSection') as HTMLElement;
     
+    // Show Form Fields when click  "Build CV button"
+    buildCvBtn.addEventListener('click', () => {
+        // Show the Form Fields
+        formSection.style.display = 'block';
+
+        // Scroll to the Form Fields
+        formSection.scrollIntoView();
+
+        // Hide the Heading-Section & "Build CV" button
+        buildCvBtn.style.display = 'none';
+        headingSection.style.display = 'none';
+    });
+
+    // Show Form Fields when click  "Build CV button"
+    startCvBtn.addEventListener('click', () => {
+        // Show the Form Fields
+        formSection.style.display = 'block';
+
+        // Scroll to the Form Fields
+        formSection.scrollIntoView();
+
+        // Hide the Heading-Section & "Build CV" button
+        startCvBtn.style.display = 'none';
+        headingSection.style.display = 'none';
+    });
+
     // Handle Profile Form Submission
     profileForm.addEventListener('submit', (event) => {
         event.preventDefault(); // Prevent form reload on submit
@@ -72,11 +115,22 @@ document.addEventListener('DOMContentLoaded', () => {
         // Show the "Edit Profile" button after form submission
         editProfileBtn.style.display = 'inline-block';
 
+        // Show the "Download Resume" button
+        downloadBtn.style.display = 'inline-block';
+
         // Show a success message
         showCustomAlert('Profile updated successfully!', 'success');
 
         // Hide the "Save Changes" button
         saveChangesBtn.style.display = 'none';
+
+        // Hide the Heading-Section & "Build CV" button
+        buildCvBtn.style.display = 'none';
+        headingSection.style.display = 'none';
+
+        // Hide the Profile Form Section
+        profileFormSection.style.display = 'none';
+
     });
 
     // Handle the "Edit Profile" button click
@@ -90,15 +144,34 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('languages')!.setAttribute('contenteditable', 'true');
         document.getElementById('name')!.setAttribute('contenteditable', 'true');
         document.getElementById('position')!.setAttribute('contenteditable', 'true');
+        
+        const profileTextElement = document.getElementById('profile-text');
+        if (profileTextElement) {
+            profileTextElement.focus(); // Focus the text field
+            const range = document.createRange(); // Create a new range
+            const selection = window.getSelection(); // Get the current selection
+            
+            // Place the cursor at the end of the text content
+            range.selectNodeContents(profileTextElement);
+            range.collapse(false); // Collapse the range to the end of the content
+            selection?.removeAllRanges(); // Clear any existing selections
+            selection?.addRange(range); // Add the new range
+        }
+
 
         // Show a popup message
-        showCustomAlert('You can now edit your profile!', 'info');
+        showCustomAlert('Now you can edit Profile!', 'info');
 
         // Remove "Edit Profile" button once clicked
         editProfileBtn.style.display = 'none';
 
         // Show the "Save Changes" button
-        saveChangesBtn.style.display = 'inline-block';
+        saveChangesBtn.style.display = 'block';
+        saveChangesBtn.textContent = 'Save Changes';
+        saveChangesBtn.style.backgroundColor = '#5CB85C';
+        saveChangesBtn.style.color = '#fff';
+        saveChangesBtn.style.cursor = 'pointer';
+        saveChangesBtn.style.pointerEvents = 'auto';
     });
 
     // Handle "Save Changes" button click
@@ -114,13 +187,17 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('position')!.setAttribute('contenteditable', 'false');
 
         // Show a success message
-        showCustomAlert('Profile changes saved successfully!', 'success');
+        showCustomAlert('Profile changes saved!', 'success');
 
         // Show the "Edit Profile" button after form submission
         editProfileBtn.style.display = 'inline-block';
 
         // Hide the "Save Changes" button
-        saveChangesBtn.style.display = 'none';
+        // saveChangesBtn.style.display = 'none';
+        saveChangesBtn.textContent = 'Changes Saved';
+        saveChangesBtn.style.backgroundColor = '#F1F5F4';
+        saveChangesBtn.style.color = 'black';
+        saveChangesBtn.style.pointerEvents = 'none';
     });
 
     // Toggle the skills section visibility
@@ -334,4 +411,5 @@ document.addEventListener('DOMContentLoaded', () => {
         skillInput.value = '';
         levelInput.value = '';
     });
+
 });

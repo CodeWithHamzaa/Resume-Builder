@@ -5,377 +5,149 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
-    <script type="text/javascript" src="js/html2canvas.min.js"></script>
     <link rel="stylesheet" href="css/styles.css">
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Mitr:wght@200;300;400;500;600;700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap');
     </style>
     <title>CodeWithHamza - Resume Builder</title>
 </head>
 
 <body>
-
-    <div id="resume" class="container">
-        <!-- Static Profile Section -->
-        <div class="profile">
-            <!-- Profile Picture -->
-            <img id="profile-photo" class="profile-photo" src="profile.png" alt="Profile Picture">
-
-            <!-- Profile Information -->
-            <div class="profile-info">
-                <h3 class="heading heading-light"><span>Profile</span>
-                    <!-- Interactive "Edit Profile" Button, initially hidden -->
-                    <button id="editProfileBtn" class="edit-btn" style="display:none;">
-                        <img width="22" height="25" src="https://img.icons8.com/pastel-glyph/50/edit.png" alt="edit"
-                            crossOrigin="anonymous" />
-                    </button>
-
-                    <!-- Save Changes Button, hidden initially -->
-                    <button id="saveChangesBtn" class="form-btn" style="display:none;">Save Changes</button>
-                </h3>
-
-                <!-- Profile Text -->
-                <p id="profile-text" class="profile-text">
-                    Hello! I’m Full Stack Developer Motivated and detail-oriented software
-                    engineering graduate seeking to leverage
-                    strong programming skills and hands-on
-                    experience in web development and data
-                    modeling to contribute effectively to a
-                    dynamic development team.
-                </p>
-
-                <!-- Contacts Section -->
-                <div class="contacts">
-                    <div class="contacts-item">
-                        <h3 class="contacts-title">Phone</h3>
-                        <a href="tel:+18001234567" id="phone-number" class="contacts-text">+92 300 8976773</a>
-                    </div>
-                    <div class="contacts-item">
-                        <h3 class="contacts-title">Email</h3>
-                        <a href="mailto:AbdulHameeddev01@gmail.com" id="email"
-                            class="contacts-text">AbdulHameeddev01@gmail.com</a>
-                    </div>
-                    <div class="contacts-item">
-                        <h3 class="contacts-title">Web</h3>
-                        <a href="https://codewithhamzaa.github.io/" id="website"
-                            class="contacts-text">www.codewithhamzaa.github.io</a>
-                    </div>
-                    <div class="contacts-item">
-                        <h3 class="contacts-title">Home</h3>
-                        <address id="home-address" class="contacts-text">
-                            SITE, Karachi Sindh, Pakistan
-                        </address>
-                    </div>
-                </div>
-
-                <!-- Languages Section -->
-                <h3 class="heading heading-light">Languages</h3>
-                <div id="languages" class="languages">
-                    <!-- Sample languages will be populated here dynamically -->
-                    <div class="language">
-                        <span class="language-text">English</span>
-                    </div>
-                    <div class="language">
-                        <span class="language-text">Urdu</span>
-                    </div>
-
-                </div>
-            </div>
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <a href="index.html">CodeWithHamza</a>
         </div>
 
-        <div class="resume">
-            <div class="resume-wrap">
+        <!-- Links and Buttons Section -->
+        <ul class="navbar-links">
+            <li><a href="resume.html">Home</a></li>
+            <li><a href="resume.html">Templates</a></li>
+            <li><a href="resume.html">Tools</a></li>
+        </ul>
 
-                <!-- About Section -->
-                <div class="about">
-                    <h1 id="name" class="name">Abdul Hameed</h1>
-                    <span id="position" class="position">Full Stack Developer</span>
-
-                    <div lass="about-contacts">
-                        <a class="about-contacts__link" href="#">
-                            <img width="25" height="25"
-                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAACEklEQVR4nO2YO08CQRDH11jYGisTW7X1E1jZKcTSL2EQJHJbEAsJiZ2FhZ2FpbWFDY/IO0YN3GIEiQWFxhhBER8oMGZvFVC4wJ3mbi/ZfzIh7GyW+e3Mzh2LkJCQkBDfkrKLSCJhhEkVYQIGWRVhEkKSbP9b8FjeNDBoUDG//p03P3hgJtt0AChlw0HwBJBEgjoA5CeOMlDRDqC2mCcNyJUEtBJjn/S7ERCapRL8tC8FR5dlqNbqECmUYWojZQyEZvVaxJVUgu5UOF9mmbAEwEpM2flOPb3VWTlZAsBl9Qx42BmgEDQToXwJJi11BrDVu5AzAcgR7TY63s8vZQC5j9tznF8bsHZK+7xBAI4I9BId7+ef8CZhK1iE7HUVXt8b8PDyoZTi8n4ORtyJ/pk0E2DGn4LbSg3UdFKswLg3ybLEI0Dh7gX6KZQvwZArzifAoJrfyaiXkpkAjWZTqf+57TQs7WYhcFHqOW8vdcMOOm8A6wdXLDBa4540DK8m4PD8vmte7va53dF4AhjD8Z+t0pOG2a2zrnmPrx/qryVmATSbHf6WyTAqJVTmRvkCYP6o9rWwACAiA98SJYTFISaiCyHRRv/lH1mcPWh+Gx0fxK9lLfzXBxlPV4uS/KgdgN7Pmx04br07BfRkwM5PBjIL2gFYFvymB4+JT1/wLQjZptzPG3kmJPpbckD/zgsJCQkhg/QJ3PVUWJ5Zt98AAAAASUVORK5CYII=" />
-                        </a>
-                        <a class="about-contacts__link" href="#">
-                            <img width="25" height="25"
-                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAABUElEQVR4nO2ZzUrDQBDH82S7Vby1JTsoPpAieFBv0qMP4UyEQq03L4KWWh/Am4eASXupYEeiWL9o6W5jdgPzgzku+f/2m00UCYIgBE3DYKwArxTgRANxFaUAJwqor+KkvVZ4beiwqtB6URk8cO557+HhU4Ja1gLFtAlI4NJewODYe3CYV24tEEBo/l4ioEvoxc2dhI86Q767TznLpzyb8Q+CHoGN7YSvb554GTpkgePOcGn44AUGo5RrLZCPX/4E3ju55a3di5Xaexd4/b1imd/XxartvQvYThktAvA/vb6I52wa3gjYMBil9RY47z7WW+D07CE8AdmFQEaAZAppOYlJdiGWbRTkNspyEuu6XSVUyU+L6wlgZi8A1C/7QudcBnv2AnHS9h4cPqoB2IxcKH4u+A6vgPadwn9JUKt4n6/yuV0V3zLYc+55QRCEqCreAAESa+zxbT1rAAAAAElFTkSuQmCC"
-                                alt="linkedin" crossorigin="anonymous" />
-                        </a>
-                        <a class="about-contacts__link" href="#">
-                            <img width="25" height="25"
-                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAADDElEQVR4nO2ZSWgUQRSGv0SiqIkLRhSi4oYQBD0IYq7iJfEUiHEDDy4HQUEQXKKHXNSgCAZxCXrwIG4xYDB68eLFgyC4xYu4BJOD4gYacYuOPHiBoenuququngTpDwoGuuf99ddU1XtVAzk5OTmOjAHqgBagC3gGfAJ+aZPPvfpM3lkBlDOKmA20AQNAwbH1A0eAWSNpYDrQAfxMYCDYJMYZoLrUJjYAHz0YCLYPwLpSGKgAzmVgINjOqlYmTABul8BEQdst1fRKRYlNFLTdAcb6NFKK6RTVZBPwwsYYkavANuA08DlFZ58CrcAm4E3I87U+tti43am26N1JmhP+OBh4BzQCZUVxWkPeew9MS2Okw9AR6XwQGb1rwHZgGVADjAOqgIXASu1sNzAn5PtbI7ROpcnYpmRXiX82R2j9SFoBtFlMjeKp5YvWGD2Zuk6Uax1kMiIZ3jfdMXoDWpxaU2e5WLMwctOgudwlWIuFCdl6s2CmYafc5xKsy2BCNoG5ZMeeGO1Ol0C9BiM9ZEs1MBSh/cQlkKlE3032PIzQluRojSl/rCd7emLyiTWDBiOSfbPmboS29M2a1wYjzokpAf0R2n0uQe4bjDgtuAQsjdF+4BLoukUeWZ2dDy7H6EpBas1OCyOvgBkZmGgC/sbo7nAJttjCiLRHnhNjE/DdoLnEJWCZZdFY0JOh/ILjUxiYB1yw0OpLcjt50NLIcHurR956i9OcdGa+buNS7f621NifZJSkM98CgV4Cu4AXFqInI0ZPToXPHQepoIlQjt6JaA8Ek5Fr1pPhvRjRK4FzeJAaLTVcjBwnBZND1oqULwv02eMQQengFIvYzQ4m+vXMn4r6kMByKTFcpR7SX+A8cBRosIxbrlPVxkgjnjgRCPzF08XDMQsTh/GIjN5FHztIgC0GE52GtZb4/vdGkciQTqVFKW7O18SYuKT3YZkgo7PXcJvow0h7qf6Wa9DrTt9G+jIuRkOp0su0rx6MDOrCr2QEkQr4QFFOcZnXq3SqTmWUUQtMHOlO5OTk/Mf8A7AmvPgC4k8yAAAAAElFTkSuQmCC"
-                                alt="github" crossorigin="anonymous" />
-                        </a>
-                        <a class="about-contacts__link" href="#">
-                            <img width="25" height="25"
-                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAACQ0lEQVR4nO2Yu2sUURjFTyImwSKSCGJja6GoRUDU+b4kapMiYiFpLCyiEV9gaSdCRA2xyT+QIo9GsVGiATHgu1C08IGPShK08RVxCUbYI3fcWXRJnJnM3Z0ZvT84sAyz3z2HOzP33g9wOBwOh+N/gLuwih4208NuKo5TMUDBGAUTFNyn4AUF76j45EswRwV9/fodXDf3PKfgnv9fxSgF56g45tc2Y2xFa3LDQD0FfRRMUVEom6mdCqWxDxKoi2d+PRoomEzBNBfRNbZhefQAggsZMM0KDUQz34EmCr5kwDArNMs2rAgP4KEzA2a5oNqxI0qA3tSN6iIS9EV5/vtTN6oJ3gMKxhMN8vAGuX9DtWbgcpQAtxINYvgxT14aIrtW2g7xJEqAx4kDBMx+IIdOkB31tgLMhAdQvLIWIODlI/LIdhsBvoeuyial9QCGYpGcukjuXZssRBcawx6hz1UJEDD3jRw+Te5sXFr9LWgOm4H5qgYImHlDnuqJX38bVmcjwPRr8mR3/PqCljw/QkX2YFl6L/HkCLlnzdJrK77+1XzmP6OC6douZB/fk4OH7C1kgqc13ko02zGuZd2t/mbuwQS5b51t4yzNwHi+t9OC/nwfaDz05vtI6aHz3z/UGygYzIBhVug8YjW2FNczYJq+TAsyTmPLDwHUUXEg5dbiTf+jEre1uGAgQQvbsZGCbioOU3GGihEqrlBw26ySVLwtN3H/DF347bq55xkVd6i4WmrunqXgqF9bsMlKc9fhcDgcDuSAn9VThUlTulWSAAAAAElFTkSuQmCC"
-                                alt="youtube-play" crossorigin="anonymous" />
-                        </a>
-
+        <div class="navbar-buttons">
+            <a href="https://github.com/CodeWithHamzaa/Resume-Builder.git" target="_blank"
+                style="text-decoration: none;"><button class="custom-button shadow">
+                    <span class="custom-button-highlight"></span>
+                    <div class="custom-button-content">
+                        <svg class="icon" viewBox="0 0 438.549 438.549">
+                            <path
+                                d="M409.132 114.573c-19.608-33.596-46.205-60.194-79.798-79.8-33.598-19.607-70.277-29.408-110.063-29.408-39.781 0-76.472 9.804-110.063 29.408-33.596 19.605-60.192 46.204-79.8 79.8C9.803 148.168 0 184.854 0 224.63c0 47.78 13.94 90.745 41.827 128.906 27.884 38.164 63.906 64.572 108.063 79.227 5.14.954 8.945.283 11.419-1.996 2.475-2.282 3.711-5.14 3.711-8.562 0-.571-.049-5.708-.144-15.417a2549.81 2549.81 0 01-.144-25.406l-6.567 1.136c-4.187.767-9.469 1.092-15.846 1-6.374-.089-12.991-.757-19.842-1.999-6.854-1.231-13.229-4.086-19.13-8.559-5.898-4.473-10.085-10.328-12.56-17.556l-2.855-6.57c-1.903-4.374-4.899-9.233-8.992-14.559-4.093-5.331-8.232-8.945-12.419-10.848l-1.999-1.431c-1.332-.951-2.568-2.098-3.711-3.429-1.142-1.331-1.997-2.663-2.568-3.997-.572-1.335-.098-2.43 1.427-3.289 1.525-.859 4.281-1.276 8.28-1.276l5.708.853c3.807.763 8.516 3.042 14.133 6.851 5.614 3.806 10.229 8.754 13.846 14.842 4.38 7.806 9.657 13.754 15.846 17.847 6.184 4.093 12.419 6.136 18.699 6.136 6.28 0 11.704-.476 16.274-1.423 4.565-.952 8.848-2.383 12.847-4.285 1.713-12.758 6.377-22.559 13.988-29.41-10.848-1.14-20.601-2.857-29.264-5.14-8.658-2.286-17.605-5.996-26.835-11.14-9.235-5.137-16.896-11.516-22.985-19.126-6.09-7.614-11.088-17.61-14.987-29.979-3.901-12.374-5.852-26.648-5.852-42.826 0-23.035 7.52-42.637 22.557-58.817-7.044-17.318-6.379-36.732 1.997-58.24 5.52-1.715 13.706-.428 24.554 3.853 10.85 4.283 18.794 7.952 23.84 10.994 5.046 3.041 9.089 5.618 12.135 7.708 17.705-4.947 35.976-7.421 54.818-7.421s37.117 2.474 54.823 7.421l10.849-6.849c7.419-4.57 16.18-8.758 26.262-12.565 10.088-3.805 17.802-4.853 23.134-3.138 8.562 21.509 9.325 40.922 2.279 58.24 15.036 16.18 22.559 35.787 22.559 58.817 0 16.178-1.958 30.497-5.853 42.966-3.9 12.471-8.941 22.457-15.125 29.979-6.191 7.521-13.901 13.85-23.131 18.986-9.232 5.14-18.182 8.85-26.84 11.136-8.662 2.286-18.415 4.004-29.263 5.146 9.894 8.562 14.842 22.077 14.842 40.539v60.237c0 3.422 1.19 6.279 3.572 8.562 2.379 2.279 6.136 2.95 11.276 1.995 44.163-14.653 80.185-41.062 108.068-79.226 27.88-38.161 41.825-81.126 41.825-128.906-.01-39.771-9.818-76.454-29.414-110.049z">
+                            </path>
+                        </svg>
+                        <span>Star on GitHub</span>
                     </div>
-                </div>
-                <!-- About Section End -->
-
-                <!-- Experience Section -->
-                <div id="experience" class="experience">
-                    <h3 class="heading heading_dark">
-                        Experience
-                    </h3>
-                    <ul id="experience-list" class="list">
-                        <li class="list-item">
-                            <h4 class="list-item__title">Avencera Solutions</h4>
-                            <p class="list-item__text">Created responsive front-end interfaces using HTML, CSS, and
-                                Bootstrap/Tailwind CSS.Collaborated with the development team to identify and fix bugs.
-                            </p>
-                        </li>
-                        <li class="list-item">
-                            <h4 class="list-item__title">Freelance Platforms</h4>
-                            <p class="list-item__text">Developed and customized websites using HTML, Tailwind CSS,
-                                TypeScript, and JavaScript.
-                                Built and maintained backend services using Python and
-                                various databases (MySQL, SQL Server).
-                                Provided technical support and enhancements for client
-                                websites</p>
-                        </li>
-
-                    </ul>
-                </div>
-                <!-- Experience Section End -->
-
-                <!-- Education Section -->
-                <div class="education">
-                    <h3 class="heading heading_dark">
-                        Education
-                    </h3>
-                    <ul id="education-list" class="list">
-                        <li class="list-item list-item_non-border">
-                            <h4 class="list-item__title">Undergraduate Software Engineering</h4>
-                            <span class="list-item__date"><i style="text-transform: capitalize;">From:</i> NED University, Karachi</span>
-                        </li>
-                        <li class="list-item list-item_non-border">
-                            <h4 class="list-item__title">Intermediate in Computer Science </h4>
-                            <span class="list-item__date"><i style="text-transform: capitalize;">From:</i> National College , Karachi</span>
-                        </li>
-                    </ul>
-                </div>
-                <!-- Education Section End -->
-
-                <!-- Skills Section -->
-                <div class="skills">
-                    <h3 class="heading heading_dark heading_skills">
-                        <span>Skills</span>
-                        <button id="toggleSkillsBtn" class="skill-button">x</button>
-                    </h3>
-
-                    <ul id="skills-list" class="skills-list" contenteditable="false">
-                        <li class="skills-list__item">
-                            HTML
-                            <div class="level level-100"></div>
-                        </li>
-                        <li class="skills-list__item">
-                            CSS
-                            <div class="level level-100"></div>
-                        </li>
-                        <li class="skills-list__item">
-                            Tailwind CSS
-                            <div class="level level-90"></div>
-                        </li>
-                        <li class="skills-list__item">
-                            TypeScript
-                            <div class="level level-90"></div>
-                        </li>
-                        <li class="skills-list__item">
-                            JavaScript
-                            <div class="level level-80"></div>
-                        </li>
-                        <li class="skills-list__item">
-                            NextJS
-                            <div class="level level-80"></div>
-                        </li>
-                        <li class="skills-list__item">
-                            Python
-                            <div class="level level-70"></div>
-                        </li>
-                    </ul>
-                </div>
-                <!-- Skills Section End -->
-            </div>
-        </div>
-    </div>
-
-    <div class="center">
-        <!-- Download Resume as PDF Button -->
-        <button id="downloadPdfBtn" class="form-btn">Download Resume as PDF</button>
-    </div>
-
-    <!-- Container for all Forms -->
-    <div class="form-container">
-        <!-- Form Section to Update Profile -->
-        <div class="form-section">
-            <h3 class="heading heading_dark text-center">Update Profile</h3>
-            <form id="profileForm">
-                <!-- Profile Picture Upload -->
-                <div class="form-group">
-                    <label for="profilePic">Upload Profile Picture:</label>
-                    <input type="file" id="profilePic" accept="image/*" required>
-                </div>
-
-                <!-- Name -->
-                <div class="form-group">
-                    <label for="inputName">Name:</label>
-                    <input type="text" id="inputName" placeholder="Enter your Name" required>
-                </div>
-
-                <!-- Position -->
-                <div class="form-group">
-                    <label for="inputPosition">Position:</label>
-                    <input type="text" id="inputPosition" placeholder="Enter your Position" required>
-                </div>
-
-                <!-- Profile Text Input -->
-                <div class="form-group">
-                    <label for="profileText">Profile Text:</label>
-                    <textarea id="profileText" placeholder="Enter profile description" required></textarea>
-                </div>
-
-                <!-- Phone Number Input -->
-                <div class="form-group">
-                    <label for="inputPhone">Phone:</label>
-                    <input type="tel" id="inputPhone" placeholder="Enter your phone number" required
-                        pattern="[+][0-9]{1,3} [0-9]{7,15}" title="e.g., +92 3008976773">
-                </div>
-
-                <!-- Email Input -->
-                <div class="form-group">
-                    <label for="inputEmail">Email:</label>
-                    <input type="email" id="inputEmail" placeholder="Enter your email" required>
-                </div>
-
-                <!-- Website Input -->
-                <div class="form-group">
-                    <label for="inputWebsite">Website:</label>
-                    <input type="text" id="inputWebsite" placeholder="Enter your website" required>
-                </div>
-
-                <!-- Home Address Input -->
-                <div class="form-group">
-                    <label for="inputHome">Home Address:</label>
-                    <input type="text" id="inputHome" placeholder="Enter your home address" required>
-                </div>
-
-                <!-- Languages Input -->
-                <div class="form-group">
-                    <label for="inputLanguages">Languages (Comma Separated):</label>
-                    <input type="text" id="inputLanguages" placeholder="Enter languages" title="e.g., English, Urdu, Sindhi" required>
-                </div>
-
-                <!-- Save Button -->
-                <button type="submit" class="form-btn" style="margin-top: 10px;">Save Changes</button>
-            </form>
+                    <div class="custom-button-stats">
+                        <svg class="icon" aria-hidden="true" viewBox="0 0 24 24">
+                            <path
+                                d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z">
+                            </path>
+                        </svg>
+                        <span>6</span>
+                    </div>
+                </button>
+            </a>
+            <!-- <a href="resume.html"><button class="btn resume-btn">Create Resume</button></a> -->
         </div>
 
-        <!-- Form Section to Update Experience/Education/Skills -->
-        <div class="form-section" style="padding-top: 0px;">
-            <!-- Form to Add New Experience -->
-            <div class="form-section">
-                <h3 class="heading heading_dark text-center">Update Experience</h3>
-                <form id="experienceForm">
-                    <!-- Company Name -->
-                    <div class="form-group">
-                        <label for="inputCompanyName">Company Name:</label>
-                        <input type="text" id="inputCompanyName" placeholder="Enter company name" required>
-                    </div>
 
-                    <!-- Job Description -->
-                    <div class="form-group">
-                        <label for="inputJobDescription">Job Description:</label>
-                        <textarea id="inputJobDescription" placeholder="Enter job description" required></textarea>
-                    </div>
+        <!-- Hamburger Menu -->
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
 
-                    <!-- Form Submit Button -->
-                    <button type="submit" class="form-btn">Add Experience</button>
-                </form>
-            </div>
-
-            <!-- Form to Add New Education -->
-            <div class="form-section">
-                <h3 class="heading heading_dark text-center">Update Education</h3>
-                <form id="educationForm">
-                    <!-- Degree Name -->
-                    <div class="form-group">
-                        <label for="inputDegree">Degree:</label>
-                        <input type="text" id="inputDegree" placeholder="Enter degree name" required>
-                    </div>
-
-                    <!-- College/University -->
-                    <div class="form-group">
-                        <label for="inputCollege">College/University:</label>
-                        <input type="text" id="inputCollege" placeholder="Enter College/University" required></input>
-                    </div>
-
-                    <!-- Form Submit Button -->
-                    <button type="submit" class="form-btn">Add Education</button>
-                </form>
-            </div>
-
-            <!-- Form to Add New Skills -->
-            <div class="form-section">
-                <h2 class="heading heading_dark text-center">Update Skills</h2>
-                <form id="skillForm">
-                    <!-- Skill Name -->
-                    <div class="form-group">
-                        <label for="skillInput">Skill:</label>
-                        <input type="text" id="skillInput" placeholder="Enter a skill" required>
-                    </div>
-
-                    <!-- Skill Level (10-100) -->
-                    <div class="form-group">
-                        <label for="levelInput">Skill Level (10, 20, 30, ..., 100):</label>
-                        <input type="number" id="levelInput" min="10" max="100" step="10"
-                            placeholder="Enter skill level" required>
-                    </div>
-
-                    <!-- Form Submit Button -->
-                    <button type="submit" class="form-btn">Add Skill</button>
-                </form>
+        <!-- Dropdown Menu -->
+        <div class="dropdown-menu">
+            <ul class="dropdown-links">
+                <li><a href="resume.html">Tools</a></li>
+                <li><a href="resume.html">Resume</a></li>
+                <li><a href="resume.html">Templates</a></li>
+            </ul>
+            <div class="dropdown-buttons">
+                <a href="https://github.com/CodeWithHamzaa/Resume-Builder.git" target="_blank"><button
+                        class="btn login-btn">GitHub</button></a>
+                <a href="resume.html"><button class="btn resume-btn" style="font-size: 0.875rem;">Create Resume</button></a>
             </div>
         </div>
-    </div>
+    </nav>
 
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="grid">
+            <div class="cvBuilder__grid">
+                <div>
+                    <div class="grid__row">
+                        <section class="col-6 col-4 cvContent">
+                            <div class="cvTitle">
+                                Online CV Maker
+                                <br>
+                                Build Your Professional CV Fast
+                            </div>
+                            <div class="cv__subTitle">
+                                Fast. Easy. Effective.
+                            </div>
+                            <div class="cvParagraph">
+                                Create a standout CV in minutes with simple steps. Use our easy-to-use CV maker and land
+                                your dream job today.
+                            </div>
+                            <a href="resume.html"><button class="btn hero-resume-btn">Create Your CV Now</button></a>
+                        </section>
 
-    <!-- Custom Alert -->
-    <div id="customAlert" class="custom-alert hidden">
-        <div class="custom-alert-content">
-            <span id="customAlertMessage"></span>
+                        <section class="col-6 col-4 cvImage">
+                            <a href="resume.html">
+                                <div class="cvImage__wrapper">
+                                    <img src="hero-img.png" alt="CV image" width="100%" height="auto">
+                                </div>
+                            </a>
+                        </section>
+                    </div>
+                </div>
+
+            </div>
         </div>
-    </div>
-    <script>
-        const downloadPdfBtn = document.getElementById('downloadPdfBtn');
+    </section>
 
-        // PDF Download Functionality
-        downloadPdfBtn.addEventListener('click', () => {
-            // Add a pdf-mode class to the resume elements to apply print styles
-            document.getElementById('resume').classList.add('pdf-mode');
+    <footer class="footer">
+        
+        <ul class="social-icon">
+            <li class="social-icon__item"><a class="social-icon__link" href="#">
+                    <ion-icon name="logo-facebook"></ion-icon>
+                </a></li>
+            <li class="social-icon__item"><a class="social-icon__link" href="#">
+                    <ion-icon name="logo-twitter"></ion-icon>
+                </a></li>
+            <li class="social-icon__item"><a class="social-icon__link" href="#">
+                    <ion-icon name="logo-linkedin"></ion-icon>
+                </a></li>
+            <li class="social-icon__item"><a class="social-icon__link" href="#">
+                    <ion-icon name="logo-instagram"></ion-icon>
+                </a></li>
+        </ul>
+        <!-- <ul class="menu">
+            <li class="menu__item"><a class="menu__link" href="#">Home</a></li>
+            <li class="menu__item"><a class="menu__link" href="#">Tools</a></li>
+            <li class="menu__item"><a class="menu__link" href="#">Templates</a></li>
+            <li class="menu__item"><a class="menu__link" href="#">GitHub</a></li>
+            <li class="menu__item"><a class="menu__link" href="#">Contact</a></li>
 
-            // The element with the id "resume" will be converted to PDF
-            const resumeElement = document.getElementById('resume');
+        </ul> -->
+        <div style="display: contents;">
+            <p>&copy;2024 CodeWithHamza | All Rights Reserved</p>
+            <p>Inspired by</p>
+            <img src="governor-logo.png" height="80px">
+            <p class="governor-text">Governor Sindh Initiative for GenAI, Web3, and Metaverse</p>
+        </div>
+        
+    </footer>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
-            // Use html2pdf to generate and download the PDF
-            const options = {
-                margin: [0, 0, 0, 0],
-                filename: 'Resume.pdf',
-                image: { type: 'jpeg', quality: 1.0 },
-                html2canvas: { scale: 3 },
-                jsPDF: { unit: 'pt', format: 'legal', orientation: 'portrait' },
-            };
-
-            html2pdf().from(resumeElement).set(options).save().then(() => {
-                // Remove the class after generating the PDF
-                document.getElementById('resume').classList.remove('pdf-mode');
-            });
-        });
-    </script>
-    <script src="js/main.js"></script>
+    <script src="/js/main.js"></script>
 </body>
 
 </html>

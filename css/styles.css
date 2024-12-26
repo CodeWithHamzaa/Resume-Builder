@@ -1101,6 +1101,10 @@ input[type="file"] {
   color: #68b1ff;
   border-bottom: 4px solid #68b1ff;
 }
+.navbar-links li a.active {
+  color: #68b1ff;
+  border-bottom: 4px solid #68b1ff;
+}
 
 /* Buttons */
 .navbar-buttons {
